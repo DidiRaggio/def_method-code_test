@@ -12,10 +12,7 @@ def main():
     #
     file_path, output_view_id = validate_input_args()
 
-    text_processor = TextProcessor(
-        file_path=file_path,
-        output_view_id=output_view_id
-    )
+    text_processor = TextProcessor(file_path=file_path, output_view_id=output_view_id)
     output = text_processor.process()
 
     return output
