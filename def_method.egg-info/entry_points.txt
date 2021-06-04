@@ -1,3 +1,0 @@
-[console_scripts]
-text_processor = text_processor.main:main
-
