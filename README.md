@@ -34,10 +34,15 @@ pip install .
 
 ### Execution
 
-Run the `text_processor` from any directory, passing in the path to the file to be processed:
+Run the `text_processor` from any directory, passing in the path to the file to be processed, as well as the output_view_id.
+
+Where output_view_id 1 sorted female first, and then by last name ascending.
+Where output_view_id 2 sort by birhtday accending and then by last name acending.
+Where output_view_id 3 sort by last name decending (this is the default value if none is passed).:
+
 
 ```bash
-text_processor <file_path>
+text_processor <file_path> <output_view_id>
 ```
 
 

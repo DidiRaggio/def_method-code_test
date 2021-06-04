@@ -91,30 +91,101 @@ def test_text_processor_identify_separator(text_processor):
     assert text_processor.separator == " "
 
 
-def test_text_processor_end_to_end(mocker):
-    """End to end test for each of the cases."""
-    filenames = [
-        "pipe.txt",
-        "comma.txt",
-        "space.txt"
-    ]
+# def test_text_processor_end_to_end(mocker):
+#     """End to end test for each of the cases."""
+#     filenames = [
+#         "pipe.txt",
+#         "comma.txt",
+#         "space.txt"
+#     ]
+#     expected_outputs = [
+#         "Smith Steve Male 3/3/1985 Red\nBonk Radek Male 6/3/1975 Green\nBouillon Francis Male 6/3/1975 Blue\n",
+#         "Abercrombie Neil Male 2/13/1943 Tan\nBishop Timothy Male 4/23/1967 Yellow\nKelly Sue Female 7/12/1959 Pink\n",
+#         "Kournikova Anna Female 6/3/1975 Red\nHingis Martina Female 4/2/1979 Green\nSeles Monica Female 12/2/1973 Black\n",
+#     ]
+#     for i, expected_output in enumerate(expected_outputs):
+#         mocker.patch(
+#             "sys.argv",
+#             [
+#                 os.getcwd(),
+#                 f"./testing/{filenames[i]}",
+
+#             ]
+#         )
+#         output = main()
+#         assert output == expected_output
+
+def test_text_processor_end_to_end_pipe_separator(mocker):
+    """End to end test for each of the cases with a pipe separator."""
     expected_outputs = [
-        "Smith Steve Male 3/3/1985 Red\nBonk Radek Male 6/3/1975 Green\nBouillon Francis Male 6/3/1975 Blue\n",
-        "Abercrombie Neil Male 2/13/1943 Tan\nBishop Timothy Male 4/23/1967 Yellow\nKelly Sue Female 7/12/1959 Pink\n",
-        "Kournikova Anna Female 6/3/1975 Red\nHingis Martina Female 4/2/1979 Green\nSeles Monica Female 12/2/1973 Black\n",
+        # Sort Female first, and then by last name ascending.
+        "Bonk Radek Male 6/3/1975 Green\nBouillon Francis Male 6/3/1975 Blue\nSmith Steve Male 3/3/1985 Red\n",
+        # Sort by birhtday accending and then by last name acending.
+        "Bonk Radek Male 6/3/1975 Green\nBouillon Francis Male 6/3/1975 Blue\nSmith Steve Male 3/3/1985 Red\n",
+        # Sort by last name decending.
+        "Smith Steve Male 3/3/1985 Red\nBouillon Francis Male 6/3/1975 Blue\nBonk Radek Male 6/3/1975 Green\n"
+
     ]
     for i, expected_output in enumerate(expected_outputs):
         mocker.patch(
             "sys.argv",
             [
                 os.getcwd(),
-                f"./testing/{filenames[i]}",
+                "./testing/pipe.txt",
+                i + 1
 
             ]
         )
         output = main()
         assert output == expected_output
 
+def test_text_processor_end_to_end_comma_separator(mocker):
+    """End to end test for each of the cases with a comma separator."""
+    expected_outputs = [
+        # Sort Female first, and then by last name ascending.
+        "Kelly Sue Female 7/12/1959 Pink\nAbercrombie Neil Male 2/13/1943 Tan\nBishop Timothy Male 4/23/1967 Yellow\n",
+        # Sort by birhtday accending and then by last name acending.
+        "Abercrombie Neil Male 2/13/1943 Tan\nKelly Sue Female 7/12/1959 Pink\nBishop Timothy Male 4/23/1967 Yellow\n",
+        # Sort by last name decending.
+        "Kelly Sue Female 7/12/1959 Pink\nBishop Timothy Male 4/23/1967 Yellow\nAbercrombie Neil Male 2/13/1943 Tan\n"
+
+    ]
+    for i, expected_output in enumerate(expected_outputs):
+        mocker.patch(
+            "sys.argv",
+            [
+                os.getcwd(),
+                "./testing/comma.txt",
+                i + 1
+
+            ]
+        )
+        output = main()
+        assert output == expected_output
+
+def test_text_processor_end_to_end_space_separator(mocker):
+    """End to end test for each of the cases with a space separator."""
+    expected_outputs = [
+        # Sort Female first, and then by last name ascending.
+        "Hingis Martina Female 4/2/1979 Green\nKournikova Anna Female 6/3/1975 Red\nSeles Monica Female 12/2/1973 Black\n",
+        # Sort by birhtday accending and then by last name acending.
+        "Seles Monica Female 12/2/1973 Black\nKournikova Anna Female 6/3/1975 Red\nHingis Martina Female 4/2/1979 Green\n",
+        # Sort by last name decending.
+        "Seles Monica Female 12/2/1973 Black\nKournikova Anna Female 6/3/1975 Red\nHingis Martina Female 4/2/1979 Green\n"
+
+    ]
+    for i, expected_output in enumerate(expected_outputs):
+        mocker.patch(
+            "sys.argv",
+            [
+                os.getcwd(),
+                "./testing/space.txt",
+                i + 1
+
+            ]
+        )
+        output = main()
+        assert output == expected_output
 
 if __name__ == '__main__':
     pytest.main()
