@@ -1,0 +1,11 @@
+README.md
+setup.py
+def_method.egg-info/PKG-INFO
+def_method.egg-info/SOURCES.txt
+def_method.egg-info/dependency_links.txt
+def_method.egg-info/entry_points.txt
+def_method.egg-info/requires.txt
+def_method.egg-info/top_level.txt
+text_processor/__init__.py
+text_processor/main.py
+text_processor/text_processor.py
