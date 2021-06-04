@@ -44,7 +44,11 @@ text_processor <file_path>
 
 ### Testing
 
-Tests where written using the Pytest and Pytest-Mock distributions, on
-pytest -s -vv
+Tests where written using the Pytest and Pytest-Mock distributions.
 
+From a terminal in the project folder run:
+
+```bash
+pytest -s -vv
+```
 
